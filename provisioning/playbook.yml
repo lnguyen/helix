@@ -1,0 +1,18 @@
+---
+- hosts: arm-*
+  roles:
+    - common
+    - { role: consul, sudo: yes }
+    - { role: arms, sudo: yes }
+
+- hosts: finger-*
+  roles:
+    - common
+    - { role: consul, sudo: yes }
+    - { role: fingers, sudo: yes }
+
+- hosts: head
+  roles:
+    - common
+    - { role: consul, sudo: yes }
+    - { role: head, sudo: yes }

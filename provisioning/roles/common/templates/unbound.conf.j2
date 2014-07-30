@@ -1,0 +1,6 @@
+server:
+    do-not-query-localhost: no
+
+forward-zone:
+  name: "consul"
+  forward-addr: {{consul_client_addr}}@8600

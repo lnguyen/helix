@@ -1,0 +1,9 @@
+[submodule "src/head"]
+	path = src/head
+	url = git@github.com:longnguyen11288/head.git
+[submodule "src/arm"]
+	path = src/arm
+	url = git@github.com:longnguyen11288/arm.git
+[submodule "src/finger"]
+	path = src/finger
+	url = git@github.com:longnguyen11288/finger.git

@@ -1,0 +1,8 @@
+---
+# defaults file for consul
+consul_version: 0.3.1
+consul_download_dir: '/tmp'
+consul_installation_dir: '/usr/local/bin'
+consul_config_dir: '/etc/consul'
+consul_extra_options: ''
+consul_master: "false"
