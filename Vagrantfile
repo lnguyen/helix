@@ -1,8 +1,10 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-ARM_COUNT=2
-FINGER_COUNT=1
+ARM_COUNT = ENV["ARM_COUNT"] ? ENV["ARM_COUNT"].to_i : 2
+FINGER_COUNT = ENV["FINGER_COUNT"] ? ENV["FINGER_COUNT"].to_i : 2
+RAM = ENV["RAM"] ? ENV["RAM"].to_i : 256
+CPU = ENV["CPU"] ? ENV["CPU"].to_i : 1
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -19,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         consul_ui_require_auth: true,
         consul_is_ui: true,
         consul_is_server: true,
-        consul_bootstrap: true,
+        consul_bootstrap_expect: 3,
         consul_bind_addr: "192.168.93.100",
         consul_client_addr: "192.168.93.100"
        }
@@ -34,7 +36,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.playbook = "provisioning/playbook.yml"
         ansible.extra_vars = {
           consul_node_name: "arm-#{arm_num}",
-          consul_join_at_start: true,
+          consul_is_server: true,
+          consul_bootstrap_expect: 3,
           consul_bind_addr: "192.168.93.15#{arm_num}",
           consul_client_addr: "192.168.93.15#{arm_num}"
          }
@@ -49,13 +52,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine.vm.provision "ansible" do |ansible|
         ansible.playbook = "provisioning/playbook.yml"
         ansible.extra_vars = {
-          consul_node_name: "arm-#{finger_num}",
-          consul_join_at_start: true,
+          consul_node_name: "finger-#{finger_num}",
           consul_bind_addr: "192.168.93.20#{finger_num}",
           consul_client_addr: "192.168.93.20#{finger_num}"
          }
       end
     end
+  end
+
+  # Provider specifics
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", RAM]
+    v.customize ["modifyvm", :id, "--cpus", CPU]
   end
 
 end

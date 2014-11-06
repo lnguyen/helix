@@ -4,3 +4,6 @@
   template: src=finger.json.j2 dest=/etc/consul.d/finger.json
   notify:
     - restart consul
+
+- name: setup arm folder
+  shell: mkdir -p /root/go/src/github.com/longnguyen11288 && cp -r /vagrant/src/arm /root/go/src/github.com/longnguyen11288

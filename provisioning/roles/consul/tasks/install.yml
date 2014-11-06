@@ -27,6 +27,7 @@
     - "{{ consul_home }}/data"
     - "{{ consul_home }}/bin"
     - "{{ consul_config_dir }}"
+    - "/etc/service"
 
 - name: copy and unpack
   unarchive: >
@@ -62,6 +63,14 @@
     group={{consul_group}}
     mode=0755
 
+- name: copy consul join upstart script
+  template: >
+    src=consul-join.conf.j2
+    dest=/etc/init/consul-join.conf
+    owner={{consul_user}}
+    group={{consul_group}}
+    mode=0755
+
 - name: add consul to path through profile.d
   template: >
     src=consul.sh.j2
@@ -82,6 +91,14 @@
   template: >
     src=consul.json.j2
     dest={{ consul_config_file }}
+    owner={{consul_user}}
+    group={{consul_group}}
+    mode=0755
+
+- name: consul join file
+  template: >
+    src=consul-join.j2
+    dest=/etc/service/consul-join
     owner={{consul_user}}
     group={{consul_group}}
     mode=0755
