@@ -1,9 +1,9 @@
 ---
 
 - name: install arm service for consul
-  template: src=arm.json.j2 dest=/etc/consul/arm.json
+  template: src=arm.json.j2 dest=/etc/consul.d/arm.json
   notify:
-    - reload consul
+    - restart consul
 
 - name: setup arm folder
   shell: mkdir -p /root/go/src/github.com/longnguyen11288 && cp -r /vagrant/src/arm /root/go/src/github.com/longnguyen11288

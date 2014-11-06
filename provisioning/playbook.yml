@@ -16,3 +16,9 @@
     - common
     - { role: consul, sudo: yes }
     - { role: head, sudo: yes }
+  vars:
+    nginx_remove_default: true
+    htpasswd:
+      - name: consul
+        users:
+        - { name: admin, password: admin }

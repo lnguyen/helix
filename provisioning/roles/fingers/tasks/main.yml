@@ -1,6 +1,6 @@
 ---
 
 - name: install finger service for consul
-  template: src=finger.json.j2 dest=/etc/consul/finger.json
+  template: src=finger.json.j2 dest=/etc/consul.d/finger.json
   notify:
-    - reload consul
+    - restart consul

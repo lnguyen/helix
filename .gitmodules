@@ -7,3 +7,6 @@
 [submodule "src/finger"]
 	path = src/finger
 	url = git@github.com:longnguyen11288/finger.git
+[submodule "provisioning/roles/arms/files/arm"]
+	path = provisioning/roles/arms/files/arm
+	url = git@github.com:longnguyen11288/arm.git
