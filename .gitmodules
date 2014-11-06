@@ -1,12 +1,6 @@
-[submodule "src/head"]
-	path = src/head
-	url = git@github.com:longnguyen11288/head.git
-[submodule "src/arm"]
-	path = src/arm
-	url = git@github.com:longnguyen11288/arm.git
-[submodule "src/finger"]
-	path = src/finger
+[submodule "provisioning/roles/fingers/files/finger"]
+	path = provisioning/roles/fingers/files/finger
 	url = git@github.com:longnguyen11288/finger.git
-[submodule "provisioning/roles/arms/files/arm"]
-	path = provisioning/roles/arms/files/arm
-	url = git@github.com:longnguyen11288/arm.git
+[submodule "provisioning/roles/head/files/head"]
+	path = provisioning/roles/head/files/head
+	url = git@github.com:longnguyen11288/head.git

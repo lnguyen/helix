@@ -1,6 +1,7 @@
 {
     "service": {
         "name": "finger",
-        "port": {{finger_port}}
+        "port": {{ finger_port }},
+        "tags": ["{{ consul_node_name }}"]
     }
 }

@@ -5,5 +5,12 @@
   notify:
     - restart consul
 
-- name: setup arm folder
-  shell: mkdir -p /root/go/src/github.com/longnguyen11288 && cp -r /vagrant/src/arm /root/go/src/github.com/longnguyen11288
+- name: copy finger folder
+  copy: >
+    src=finger
+    dest=/root/go/src/github.com/longnguyen11288
+
+- name: build finger
+  shell: . /etc/profile && make
+  args:
+    chdir: /root/go/src/github.com/longnguyen11288/finger
