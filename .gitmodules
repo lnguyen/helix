@@ -1,3 +1,6 @@
+[submodule "provisioning/roles/arms/files/arm"]
+	path = provisioning/roles/arms/files/arm
+	url = git@github.com:longnguyen11288/arm.git
 [submodule "provisioning/roles/fingers/files/finger"]
 	path = provisioning/roles/fingers/files/finger
 	url = git@github.com:longnguyen11288/finger.git
