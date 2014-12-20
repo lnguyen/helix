@@ -1,14 +1,16 @@
 package player
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
 	"testing"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestCreate(t *testing.T) {
 	Convey("Test Create", t, func() {
 		c := &Config{
 			DataDir: "/tmp/foo",
+			Host:    "127.0.0.1",
 			Name:    "TmpName",
 			Port:    1234,
 		}
