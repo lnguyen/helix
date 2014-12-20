@@ -6,4 +6,5 @@ type Config struct {
 	Host    string `json:host`
 	Name    string `json:"name"`
 	Port    int    `json:"port"`
+	Mock    bool   `json:mock`
 }

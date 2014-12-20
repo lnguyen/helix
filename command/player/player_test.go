@@ -13,6 +13,7 @@ func TestCreate(t *testing.T) {
 			Host:    "127.0.0.1",
 			Name:    "TmpName",
 			Port:    1234,
+			Mock:    true,
 		}
 		player, err := Create(c)
 		So(err, ShouldBeNil)

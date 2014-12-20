@@ -4,13 +4,3 @@
   template: src=arm.json.j2 dest=/etc/consul.d/arm.json
   notify:
     - restart consul
-
-- name: copy arm folder
-  copy: >
-    src=arm
-    dest=/root/go/src/github.com/longnguyen11288
-
-- name: build arm
-  shell: . /etc/profile && make
-  args:
-    chdir: /root/go/src/github.com/longnguyen11288/arm

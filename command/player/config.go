@@ -14,6 +14,7 @@ type Config struct {
 	Name    string `json:"name"`
 	Host    string `json:"host"`
 	Port    int    `json:"port"`
+	Mock    bool   `json:"mock"`
 }
 
 //DefaultConfig if none is passed in
@@ -23,6 +24,7 @@ func DefaultConfig() *Config {
 		Host:    "0.0.0.0",
 		Name:    "Player-1",
 		Port:    8821,
+		Mock:    false,
 	}
 }
 
@@ -66,6 +68,10 @@ func MergeConfig(a, b *Config) *Config {
 	}
 	if b.Port != 0 {
 		result.Port = b.Port
+	}
+
+	if b.Mock != false {
+		result.Mock = b.Mock
 	}
 
 	return &result

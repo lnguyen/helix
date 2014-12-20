@@ -12,13 +12,14 @@ import (
 
 func TestDecodeConfig(t *testing.T) {
 	Convey("Test Decoding Config", t, func() {
-		input := `{"data_dir": "/tmp/", "name": "TestName", "host": "127.0.0.1", "port": 8312}`
+		input := `{"data_dir": "/tmp/", "name": "TestName", "host": "127.0.0.1", "port": 8312, "mock": true}`
 		config, err := DecodeConfig(bytes.NewReader([]byte(input)))
 		So(err, ShouldBeNil)
 		So(config.DataDir, ShouldEqual, "/tmp/")
 		So(config.Host, ShouldEqual, "127.0.0.1")
 		So(config.Name, ShouldEqual, "TestName")
 		So(config.Port, ShouldEqual, 8312)
+		So(config.Mock, ShouldEqual, true)
 	})
 
 }
@@ -30,6 +31,7 @@ func TestDefaultConfig(t *testing.T) {
 		So(config.Host, ShouldEqual, "0.0.0.0")
 		So(config.Name, ShouldEqual, "Player-1")
 		So(config.Port, ShouldEqual, 8821)
+		So(config.Mock, ShouldEqual, true)
 	})
 }
 
@@ -46,6 +48,7 @@ func TestMergeConfig(t *testing.T) {
 			Host:    "0.0.0.0",
 			Name:    "RealName",
 			Port:    4567,
+			Mock:    true,
 		}
 
 		c := MergeConfig(a, b)
@@ -62,7 +65,7 @@ func TestReadConfigPaths(t *testing.T) {
 	Convey("Test reading config", t, func() {
 		tf, err := ioutil.TempFile("", "player")
 		So(err, ShouldBeNil)
-		tf.Write([]byte(`{"data_dir": "/tmp/", "name": "TestName", "host": "127.0.0.1", "port": 8312}`))
+		tf.Write([]byte(`{"data_dir": "/tmp/", "name": "TestName", "host": "127.0.0.1", "port": 8312}, "mock": true`))
 		tf.Close()
 		defer os.Remove(tf.Name())
 
@@ -72,5 +75,6 @@ func TestReadConfigPaths(t *testing.T) {
 		So(config.Host, ShouldEqual, "127.0.0.1")
 		So(config.Name, ShouldEqual, "TestName")
 		So(config.Port, ShouldEqual, 8312)
+		So(config.Mock, ShouldEqual, true)
 	})
 }

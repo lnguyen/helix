@@ -50,5 +50,9 @@ func (p *Player) playerConfig() *player.Config {
 		base.Port = p.config.Port
 	}
 
+	if p.config.Mock != false {
+		base.Mock = p.config.Mock
+	}
+
 	return &base
 }

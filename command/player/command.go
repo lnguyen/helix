@@ -24,9 +24,12 @@ func (c *Command) readConfig() *Config {
 
 	cmdFlags.StringVar(&cmdConfig.DataDir, "data-dir", "", "data directory")
 	cmdFlags.StringVar(&cmdConfig.Name, "name", "", "name")
+	cmdFlags.StringVar(&cmdConfig.Host, "host", "", "host")
 	cmdFlags.StringVar(&configFile, "config-file", "", "config-file")
 
 	cmdFlags.IntVar(&cmdConfig.Port, "port", 0, "port")
+
+	cmdFlags.BoolVar(&cmdConfig.Mock, "mock", false, "mock")
 
 	if err := cmdFlags.Parse(c.args); err != nil {
 		return nil
