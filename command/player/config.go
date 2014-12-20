@@ -12,6 +12,7 @@ import (
 type Config struct {
 	DataDir string `json:"data_dir"`
 	Name    string `json:"name"`
+	Host    string `json:"host"`
 	Port    int    `json:"port"`
 }
 
@@ -19,6 +20,7 @@ type Config struct {
 func DefaultConfig() *Config {
 	return &Config{
 		DataDir: ".",
+		Host:    "0.0.0.0",
 		Name:    "Player-1",
 		Port:    8821,
 	}
@@ -55,6 +57,9 @@ func MergeConfig(a, b *Config) *Config {
 
 	if b.DataDir != "" {
 		result.DataDir = b.DataDir
+	}
+	if b.Host != "" {
+		result.Host = b.Host
 	}
 	if b.Name != "" {
 		result.Name = b.Name
