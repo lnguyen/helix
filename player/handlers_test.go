@@ -3,6 +3,7 @@ package player
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"path"
@@ -20,12 +21,13 @@ func TestHandlers(t *testing.T) {
 		tmpDir, _ := ioutil.TempDir("", "handlers")
 		tmpFile, _ := ioutil.TempFile(tmpDir, "handlers")
 
-		c := Config{DataDir: tmpDir}
+		c := &Config{DataDir: tmpDir}
 
 		mux := http.NewServeMux()
 		server := httptest.NewServer(mux)
 		m := martini.Classic()
 		m.Map(NewMockPlayer())
+		m.Map(log.New(ioutil.Discard, "", 0))
 		m.Map(c)
 		m.Get("/files", FilesHandler)
 		m.Get("/status", StatusHandler)
@@ -77,16 +79,6 @@ func TestHandlers(t *testing.T) {
 				})
 			})
 		})
-
-		//player := NewMockPlayer()
-		//err = player.PlayFile("testfile.mkv")
-		//So(err, ShouldBeNil)
-		//So(player.FilePlaying(), ShouldEqual, "testfile.mkv")
-		//So(player.IsPlaying(), ShouldEqual, true)
-		//err = player.StopFile()
-		//So(err, ShouldBeNil)
-		//So(player.FilePlaying(), ShouldEqual, "")
-		//So(player.IsPlaying(), ShouldEqual, false)
 
 	})
 

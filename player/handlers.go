@@ -36,7 +36,7 @@ func StopFileHandler(p Player, w http.ResponseWriter) {
 }
 
 //FilesHandler list the files that can be played
-func FilesHandler(c Config, w http.ResponseWriter) {
+func FilesHandler(c *Config, w http.ResponseWriter) {
 	var files Files
 	osFiles, _ := ioutil.ReadDir(c.DataDir)
 	for _, f := range osFiles {
