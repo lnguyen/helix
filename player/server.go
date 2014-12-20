@@ -30,7 +30,7 @@ func New(c *Config) (*Server, error) {
 
 func (s *Server) StartServer() {
 	//TODO allow setting of host
-	addr := "127.0.0.1:" + strconv.Itoa(s.config.Port)
+	addr := s.config.Host + ":" + strconv.Itoa(s.config.Port)
 	log.Printf("[INFO] Starting server on %v\n", addr)
 	s.martiniServer.RunOnAddr(addr)
 }

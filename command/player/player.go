@@ -38,6 +38,10 @@ func (p *Player) playerConfig() *player.Config {
 		base.DataDir = p.config.DataDir
 	}
 
+	if p.config.Host != "" {
+		base.Host = p.config.Host
+	}
+
 	if p.config.Name != "" {
 		base.Name = p.config.Name
 	}
